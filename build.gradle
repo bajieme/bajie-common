@@ -56,30 +56,45 @@ buildscript {
                 // jjwt
                 "jjwt"                   : 'io.jsonwebtoken:jjwt:0.9.1'
         ]
+
+        // 私服打包配置
+        maven = [
+                userName : 'admin',
+                password : 'Bajie@2021',
+                releasesUrl : 'http://121.40.32.242:8081/repository/bajie-release/',
+                snapshotUrl : 'http://121.40.32.242:8081/repository/bajie-snapshot/',
+        ]
     }
 
-    repositories {
-        mavenCentral()
-        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
-        maven { url 'http://121.40.32.242:8081/repository/bajie-snapshot/' }
-        maven { url 'http://121.40.32.242:8081/repository/bajie-release/' }
-        maven { url 'http://121.40.32.242:8081/repository/maven-public/' }
-        mavenCentral()
-    }
+repositories {
+    mavenLocal()
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    maven { url 'http://121.40.32.242:8081/repository/bajie-snapshot/' }
+    maven { url 'http://121.40.32.242:8081/repository/bajie-release/' }
+    maven { url 'http://121.40.32.242:8081/repository/maven-public/' }
+    mavenCentral()
+}
 }
 
 plugins {
     id 'java'
+    id 'idea'
     id 'java-library'
-    id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version "${springBootManagementVersion}"
+//    // spring boot 插件
+//    id 'org.springframework.boot' version "${springBootVersion}"
+//    // Gradle插件，提供类似Maven的依赖关系管理功能
+//    id 'io.spring.dependency-management' version "${springBootManagementVersion}"
+//
+//    //
+    id 'maven'
 }
 
 // 所有项目
 allprojects {
     group 'com.bajie'
-    version '1.0-SNAPSHOT'
+//    version '1.1.1-SNAPSHOT'
+    version '1.1.1-SNAPSHOT'
 
     // 最新快照
     configurations.all {
@@ -88,11 +103,11 @@ allprojects {
 }
 
 // 排除子项目boot工程打包
-if (project.subprojects) {
-    bootJar {
-        enabled = false
-    }
-}
+//if (project.subprojects) {
+//    bootJar {
+//        enabled = false
+//    }
+//}
 
 
 // 设定子模块的通用配置
@@ -100,11 +115,14 @@ subprojects {
 
     apply plugin: 'java'
     apply plugin: 'idea'
-    apply plugin: 'java-library'
+//    apply plugin: 'java-library'
     // spring boot 插件
-    apply plugin: 'org.springframework.boot'
+//    apply plugin: 'org.springframework.boot'
     // Gradle插件，提供类似Maven的依赖关系管理功能
-    apply plugin: 'io.spring.dependency-management'
+//    apply plugin: 'io.spring.dependency-management'
+
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
 
     compileJava {
         sourceCompatibility = "${javaVersion}"
@@ -120,16 +138,13 @@ subprojects {
     jar {
         enabled(true)
     }
-    bootJar {
-        enabled(false)
-    }
+//    bootJar {
+//        enabled(false)
+//    }
 
     repositories {
-        mavenCentral()
+        mavenLocal()
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
-        maven { url 'http://121.40.32.242:8081/repository/bajie-snapshot/' }
-        maven { url 'http://121.40.32.242:8081/repository/bajie-release/' }
-        maven { url 'http://121.40.32.242:8081/repository/maven-public/' }
         mavenCentral()
     }
 
@@ -150,19 +165,43 @@ subprojects {
         implementation "${lib['gson']}"
     }
 
-    dependencyManagement {
-        imports {
-            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
-            mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}")
-        }
-    }
+//    dependencyManagement {
+//        imports {
+//            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+//            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+//            mavenBom("com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}")
+//        }
+//    }
 
     test {
         useJUnitPlatform()
     }
-}
 
+    // ==================================== 上传私服配置 start ====================================
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url:rootProject.ext.maven.releasesUrl){
+                    authentication(userName: rootProject.ext.maven.userName, password: rootProject.maven.password)
+                }
+                snapshotRepository(url:rootProject.ext.maven.snapshotUrl){
+                    authentication(userName: rootProject.ext.maven.userName, password: rootProject.maven.password)
+                }
+            }
+        }
+    }
+
+// 上传source
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.allJava
+        classifier 'sources'
+    }
+
+    artifacts {
+        archives sourcesJar
+    }
+// ==================================== 上传私服配置 end ====================================
+}
 println('====================================================')
 println("bajie-common")
 println("javaVersion:${javaVersion}")
