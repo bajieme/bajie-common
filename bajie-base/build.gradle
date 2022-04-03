@@ -1,0 +1,11 @@
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation "${lib['javax.servlet-api']}"
+    implementation "${lib['jackson-databind']}"
+    implementation "${lib['jackson-datatype-jsr310']}"
+    implementation "${lib['spring-context']}"
+    implementation "${lib['spring-web']}"
+}
