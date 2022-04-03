@@ -1,2 +1,4 @@
 rootProject.name = 'bajie-common'
 
+// base工程
+include 'bajie-base'
