@@ -180,9 +180,9 @@ subprojects {
     }
 
     // ==================================== 上传私服配置 start ====================================
-    println("======================== 开始上传jar包到私服 ============================")
+    // println("======================== 开始上传jar包到私服 ============================")
     // implementation 'com.bajie:bajie-base:1.0.0-SNAPSHOT'
-    println("implementation '${project.group}:${project.name}:${project.version}'")
+    // println("implementation '${project.group}:${project.name}:${project.version}'")
     uploadArchives {
         repositories {
             mavenDeployer {
@@ -205,7 +205,7 @@ subprojects {
 //    artifacts {
 //        archives sourcesJar
 //    }
-    println("======================== 成功上传jar包到私服 ============================")
+//     println("======================== 成功上传jar包到私服 ============================")
 // ==================================== 上传私服配置 end ====================================
 }
 //println('====================================================')
