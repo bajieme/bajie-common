@@ -143,6 +143,10 @@ subprojects {
     repositories {
         mavenLocal()
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'http://121.40.32.242:8081/repository/bajie-snapshot/' }
+        maven { url 'http://121.40.32.242:8081/repository/bajie-release/' }
+        maven { url 'http://121.40.32.242:8081/repository/maven-public/' }
         mavenCentral()
     }
 
