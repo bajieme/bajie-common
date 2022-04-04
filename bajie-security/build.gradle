@@ -3,5 +3,15 @@ jar {
 }
 
 dependencies {
+    // redis-boot
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    // redis 依赖common-pool2连接池依赖
+    implementation 'org.apache.commons:commons-pool2'
+
+    // oauth2
+    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+    implementation 'org.springframework.cloud:spring-cloud-starter-security'
+    // jwt
+    implementation "${lib['jjwt']}"
 
 }
