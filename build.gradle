@@ -196,15 +196,15 @@ subprojects {
         }
     }
 
-//    // 上传source
-//    task sourcesJar(type: Jar) {
-//        from sourceSets.main.allJava
-//        classifier 'sources'
-//    }
-//
-//    artifacts {
-//        archives sourcesJar
-//    }
+   // 上传source
+   task sourcesJar(type: Jar) {
+       from sourceSets.main.allJava
+       classifier 'sources'
+   }
+
+   artifacts {
+       archives sourcesJar
+   }
 //     println("======================== 成功上传jar包到私服 ============================")
 // ==================================== 上传私服配置 end ====================================
 }
