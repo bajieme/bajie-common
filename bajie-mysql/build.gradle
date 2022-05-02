@@ -4,4 +4,8 @@ jar {
 
 dependencies {
 
+    // mysql
+    api 'mysql:mysql-connector-java'
+    api "${lib['druid']}"
+    api "${lib['mybatis-plus']}"
 }

@@ -1,4 +1,4 @@
-package com.bajie.boot.config;
+package com.bajie.mysql.config;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;

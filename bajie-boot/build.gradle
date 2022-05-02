@@ -15,7 +15,8 @@ dependencies {
     api ('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    // mybatis-plus 注解
-    api "${lib['mybatis-plus-annotation']}"
-    api "${lib['mybatis-plus-extension']}"
+
+    // project
+    implementation project(':bajie-base')
+
 }
