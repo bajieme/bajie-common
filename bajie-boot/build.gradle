@@ -4,4 +4,18 @@ jar {
 
 dependencies {
 
+    // web
+    api ('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+    api 'org.springframework.boot:spring-boot-starter-undertow'
+    // actuator
+    api 'org.springframework.boot:spring-boot-starter-actuator'
+    // test
+    api ('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    // mybatis-plus 注解
+    api "${lib['mybatis-plus-annotation']}"
+    api "${lib['mybatis-plus-extension']}"
 }
