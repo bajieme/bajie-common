@@ -3,9 +3,13 @@ jar {
 }
 
 dependencies {
-    implementation "${lib['javax.servlet-api']}"
-    implementation "${lib['jackson-databind']}"
-    implementation "${lib['jackson-datatype-jsr310']}"
-    implementation "${lib['spring-context']}"
-    implementation "${lib['spring-web']}"
+    api "${lib['javax.servlet-api']}"
+    api "${lib['jackson-databind']}"
+    api "${lib['jackson-datatype-jsr310']}"
+    api "${lib['spring-context']}"
+    api "${lib['spring-web']}"
+    // mybatis-plus 注解
+    api "${lib['mybatis-plus-annotation']}"
+    api "${lib['mybatis-plus-extension']}"
+
 }

@@ -28,7 +28,7 @@ public class BaseRequest<T> {
     /**
      * 参数类
      */
-    protected T reqdata;
+    protected T data;
 
     /**
      * 签名
@@ -44,8 +44,14 @@ public class BaseRequest<T> {
      * latitude 纬度
      */
     protected String lat;
+
     /**
      * 版本
      */
     protected String version;
+
+    /**
+     * 来源
+     */
+    protected String source;
 }

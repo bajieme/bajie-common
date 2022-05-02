@@ -5,3 +5,13 @@ include 'bajie-base'
 
 // security 工程
 include 'bajie-security'
+
+// spring-boot 配置
+include 'bajie-boot'
+
+// mysql 配置
+include 'bajie-mysql'
+
+// redis 配置
+include 'bajie-redis'
+
