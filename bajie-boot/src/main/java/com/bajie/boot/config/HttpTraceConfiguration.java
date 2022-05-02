@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * 日志拦截
+ *
  * @author bajie
  * @date 2022-05-02 2:54 下午
  * @since 1.0.0

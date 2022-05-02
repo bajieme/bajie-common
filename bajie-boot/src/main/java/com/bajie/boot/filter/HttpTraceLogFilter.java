@@ -38,6 +38,7 @@ public class HttpTraceLogFilter extends OncePerRequestFilter implements Ordered 
     private static final String NEED_TRACE_PATH_PREFIX = "/api";
     private static final String IGNORE_CONTENT_TYPE = "multipart/form-data";
 
+
     private final MeterRegistry registry;
 
     public HttpTraceLogFilter(MeterRegistry registry) {
@@ -74,7 +75,10 @@ public class HttpTraceLogFilter extends OncePerRequestFilter implements Ordered 
             // 耗时计算结束
             stopWatch.stop();
             String path = request.getRequestURI();
-            if (path.startsWith(NEED_TRACE_PATH_PREFIX) && !Objects.equals(IGNORE_CONTENT_TYPE, request.getContentType())) {
+            String contentType = request.getContentType();
+            log.info("请求contentType: {}", request.getContentType());
+            log.info("请求URI: {}", path);
+            if (path.startsWith(NEED_TRACE_PATH_PREFIX) && !Objects.equals(IGNORE_CONTENT_TYPE, contentType)) {
 
                 //1. 记录日志
                 HttpTraceLog traceLog = new HttpTraceLog();
