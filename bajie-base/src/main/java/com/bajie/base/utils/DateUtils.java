@@ -1,4 +1,4 @@
-package com.bajie.boot.util;
+package com.bajie.base.utils;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

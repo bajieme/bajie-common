@@ -1,4 +1,4 @@
-package com.bajie.boot.constant;
+package com.bajie.base.constant;
 
 /**
  * 常量类
@@ -8,7 +8,7 @@ package com.bajie.boot.constant;
  * @since 1.0.0
  */
 public interface CommonConstants {
-    
+
     /**
      * token过期时间 2小时(7200秒)
      */

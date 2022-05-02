@@ -1,8 +1,9 @@
-package com.bajie.boot.util;
+package com.bajie.base.utils;
 
-import com.bajie.boot.annotation.NotRepeatSubmit;
-import lombok.extern.slf4j.Slf4j;
+import com.bajie.base.annotation.NotRepeatSubmit;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +23,9 @@ import java.util.Set;
  * @date 2022-05-02 2:56 下午
  * @since 1.0.0
  */
-@Slf4j
 public class SignUtils {
+
+    private static final Logger log = LoggerFactory.getLogger(SignUtils.class);
 
     /**
      * 按参数名升续拼接参数

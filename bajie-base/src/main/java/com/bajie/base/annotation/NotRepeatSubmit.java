@@ -1,11 +1,12 @@
-package com.bajie.boot.annotation;
+package com.bajie.base.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import static com.bajie.boot.constant.CommonConstants.REPEAT_TIME;
+import static com.bajie.base.constant.CommonConstants.REPEAT_TIME;
+
 
 /**
  * @author bajie

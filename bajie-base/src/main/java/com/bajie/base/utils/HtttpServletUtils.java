@@ -1,13 +1,14 @@
-package com.bajie.boot.util;
+package com.bajie.base.utils;
 
 import cn.hutool.http.ContentType;
 import com.bajie.base.http.response.ResultCode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
@@ -30,8 +31,9 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
  * @date 2022-05-02 3:03 下午
  * @since 1.0.0
  */
-@Slf4j
 public class HtttpServletUtils {
+
+    private static final Logger log = LoggerFactory.getLogger(HtttpServletUtils.class);
 
     /**
      * 返回参数
