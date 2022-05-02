@@ -93,7 +93,12 @@ public enum ResultCode implements IResultCode {
     SIGN_ERROR(600, "签名错误"),
 
     /**
-     * 位置错误
+     * 自定义异常
+     */
+    CUSTOM_ERROR(10000, "自定义异常"),
+
+    /**
+     * 未知错误
      */
     UNKNOW_ERROR(10001, "未知错误"),
 
