@@ -227,6 +227,18 @@ public class R<T> implements Serializable {
     /**
      * 返回R
      *
+     * @param resultCode 业务代码
+     * @param data       数据
+     * @param <T>        T 泛型标记
+     * @return R
+     */
+    public static <T> R<T> fail(IResultCode resultCode, T data) {
+        return new R<>(resultCode.getCode(), data, resultCode.getMsg());
+    }
+
+    /**
+     * 返回R
+     *
      * @param flag 成功状态
      * @return R
      */

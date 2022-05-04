@@ -2,13 +2,13 @@ package com.bajie.base.http.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
 import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
@@ -29,12 +29,17 @@ public enum ResultCode implements IResultCode {
     /**
      * 操作失败
      */
-    UNKNOW_ERROR(1, "哎呀出错了，请稍后再试!"),
+    FAILURE(1, "哎呀出错了，请稍后再试!"),
+
+    /**
+     * fallback 提示信息
+     */
+    FALLBACK_MSG(2, "服务器繁忙请稍后再试!"),
 
     /**
      * 业务异常 400
      */
-    FAILURE(BAD_REQUEST.value(), "业务异常"),
+    BAD_REQUEST(HttpStatus.BAD_REQUEST.value(), "业务异常"),
 
     /**
      * 请求未授权 401
@@ -97,11 +102,6 @@ public enum ResultCode implements IResultCode {
     SIGN_ERROR(600, "签名错误"),
 
     /**
-     * 自定义异常
-     */
-    CUSTOM_ERROR(10001, "自定义异常"),
-
-    /**
      * 参数错误
      */
     PARAMETER_ERROR(10002, "参数错误"),
@@ -120,11 +120,6 @@ public enum ResultCode implements IResultCode {
      * 防止重复提交 10006
      */
     REPEAT_SUBMIT(10006, "请不要频繁操作"),
-
-    /**
-     * fallback 提示信息
-     */
-    FALLBACK_MSG(SC_BAD_REQUEST, "服务器繁忙请稍后再试!"),
     ;
 
     /**

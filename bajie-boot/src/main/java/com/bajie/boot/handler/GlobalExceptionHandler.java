@@ -40,75 +40,76 @@ public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<String> handleError(MissingServletRequestParameterException ex) {
-        log.debug("缺少请求参数:{}", ex.getMessage());
+        log.error("全局缺少请求参数:{}", ex.getMessage());
         String message = String.format("缺少必要的请求参数: %s", ex.getParameterName());
-        return R.fail(ResultCode.PARAM_MISS, message, "缺少请求参数");
+        return R.fail(ResultCode.PARAM_MISS, message);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public R<String> handleError(MethodArgumentTypeMismatchException ex) {
-        log.debug("请求参数格式错误:{}", ex.getMessage());
+        log.error("全局请求参数格式错误:{}", ex.getMessage());
         String message = String.format("请求参数格式错误: %s", ex.getName());
-        return R.fail(ResultCode.PARAM_TYPE_ERROR, message, "请求参数格式错误");
+        return R.fail(ResultCode.PARAM_TYPE_ERROR, message);
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public R<String> handleError(NoHandlerFoundException ex) {
-        log.debug("404没找到请求:{}", ex.getMessage());
-        return R.fail(ResultCode.NOT_FOUND, ex.getMessage(), "404没找到请求");
+        log.error("全局404没找到请求:{}", ex.getMessage());
+        return R.fail(ResultCode.NOT_FOUND, ex.getMessage());
     }
 
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     @ResponseStatus(HttpStatus.OK)
     public R<String> handleError(HttpMediaTypeNotSupportedException ex) {
-        log.debug("不支持当前媒体类型:{}", ex.getMessage());
-        return R.fail(ResultCode.MEDIA_TYPE_NOT_SUPPORTED, ex.getMessage(), "不支持当前媒体类型");
+        log.error("全局不支持当前媒体类型:{}", ex.getMessage());
+        return R.fail(ResultCode.MEDIA_TYPE_NOT_SUPPORTED, ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.OK)
     public R<String> handleError(MethodArgumentNotValidException ex) {
-        log.debug("参数验证失败:{}", ex.getMessage());
+        log.error("全局参数验证失败:{}", ex.getMessage());
         return handleError(ex.getBindingResult());
     }
 
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.OK)
     public R<String> handleError(BindException ex) {
-        log.debug("参数绑定失败:{}", ex.getMessage());
+        log.error("全局参数绑定失败:{}", ex.getMessage());
         return handleError(ex.getBindingResult());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.OK)
     public R<String> handleError(HttpRequestMethodNotSupportedException e) {
-        log.debug("不支持当前请求方法:{}", e.getMessage());
-        return R.fail(ResultCode.METHOD_NOT_SUPPORTED, e.getMessage(), "不支持当前请求方法");
+        log.error("全局不支持当前请求方法:{}", e.getMessage());
+        return R.fail(ResultCode.METHOD_NOT_SUPPORTED, e.getMessage());
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.OK)
     public R<String> handleError(HttpMessageNotReadableException ex) {
-        log.error("消息不能读取:{}", ExceptionUtils.getStackTrace(ex));
-        return R.fail(ResultCode.MSG_NOT_READABLE, ex.getMessage(), "消息不能读取");
+        log.error("全局消息不能读取:{}", ExceptionUtils.getStackTrace(ex));
+        return R.fail(ResultCode.MSG_NOT_READABLE, ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.OK)
     public R<String> handleException(Exception ex) {
-        log.error("服务器异常:{}", ExceptionUtils.getStackTrace(ex));
-        return R.fail(ResultCode.FAILURE, ex.getMessage(), "哎呀出错了，请稍后再试");
+        log.error("全局服务器异常:{}", ExceptionUtils.getStackTrace(ex));
+        return R.fail(ResultCode.FAILURE, ex.getMessage());
     }
 
     @ExceptionHandler(CustomException.class)
+    @ResponseStatus(HttpStatus.OK)
     public R<String> handleCustomException(CustomException ce) {
-        log.error("自定义异常:{}", ExceptionUtils.getStackTrace(ce));
-        return R.fail(ce.getCode(), ce.getMessage());
+        log.error("全局自定义异常:{}", ExceptionUtils.getStackTrace(ce));
+        return R.fail(ResultCode.FAILURE, ce.getMessage());
     }
 
     /**

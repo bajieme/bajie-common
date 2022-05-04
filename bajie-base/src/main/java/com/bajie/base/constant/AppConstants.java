@@ -22,7 +22,7 @@ public interface AppConstants {
     /**
      * 应用名前缀
      */
-    String APPLICATION_NAME_PREFIX = "bajie-";
+    String APPLICATION_NAME_PREFIX = "";
 
     /**
      * 网关模块名称

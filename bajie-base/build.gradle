@@ -8,8 +8,11 @@ dependencies {
     api "${lib['jackson-datatype-jsr310']}"
     api "${lib['spring-context']}"
     api "${lib['spring-web']}"
+
     // mybatis-plus 注解
     api "${lib['mybatis-plus-annotation']}"
     api "${lib['mybatis-plus-extension']}"
 
+    // openfeign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 }
