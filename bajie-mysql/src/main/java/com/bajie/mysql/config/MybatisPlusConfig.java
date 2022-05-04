@@ -52,6 +52,4 @@ public class MybatisPlusConfig implements MetaObjectHandler {
         this.fillStrategy(metaObject, "updateTime", LocalDateTime.now());
         this.fillStrategy(metaObject, "updateBy", "bajie");
     }
-
-
 }

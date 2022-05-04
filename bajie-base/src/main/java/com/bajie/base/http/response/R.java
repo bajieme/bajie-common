@@ -1,5 +1,6 @@
 package com.bajie.base.http.response;
 
+import com.bajie.base.enums.ResultTypeEnum;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,6 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.springframework.lang.Nullable;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
@@ -33,14 +33,17 @@ public class R<T> implements Serializable {
     @ApiModelProperty(value = "状态码", required = true)
     private int code;
 
+    /**
+     * 'success' | 'error' | 'warning'
+     */
     @ApiModelProperty(value = "是否成功", required = true)
-    private boolean success;
+    private String type;
 
     @ApiModelProperty(value = "返回数据")
-    private T data;
+    private T result;
 
     @ApiModelProperty(value = "返回消息", required = true)
-    private String msg;
+    private String message;
 
     private R(IResultCode resultCode) {
         this(resultCode, null, resultCode.getMsg());
@@ -58,11 +61,15 @@ public class R<T> implements Serializable {
         this(resultCode.getCode(), data, msg);
     }
 
-    private R(int code, T data, String msg) {
+    private R(int code, T result, String message) {
         this.code = code;
-        this.data = data;
-        this.msg = msg;
-        this.success = ResultCode.SUCCESS.code == code;
+        this.result = result;
+        this.message = message;
+        if (code == ResultTypeEnum.SUCCESS.getCode()) {
+            this.type = ResultTypeEnum.SUCCESS.getDesc();
+        } else {
+            this.type = ResultTypeEnum.ERROR.getDesc();
+        }
     }
 
     /**
@@ -107,7 +114,7 @@ public class R<T> implements Serializable {
      * @return R
      */
     public static <T> R<T> data(T data, String msg) {
-        return data(HttpServletResponse.SC_OK, data, msg);
+        return data(ResultCode.SUCCESS.code, data, msg);
     }
 
     /**

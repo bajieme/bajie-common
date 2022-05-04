@@ -7,7 +7,6 @@ import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
 import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
 import static javax.servlet.http.HttpServletResponse.SC_NOT_FOUND;
-import static javax.servlet.http.HttpServletResponse.SC_OK;
 import static javax.servlet.http.HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
@@ -23,9 +22,14 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @AllArgsConstructor
 public enum ResultCode implements IResultCode {
     /**
-     * 操作成功 200
+     * 操作成功 0
      */
-    SUCCESS(SC_OK, "操作成功"),
+    SUCCESS(0, "操作成功"),
+
+    /**
+     * 操作失败
+     */
+    UNKNOW_ERROR(1, "哎呀出错了，请稍后再试!"),
 
     /**
      * 业务异常 400
@@ -95,12 +99,7 @@ public enum ResultCode implements IResultCode {
     /**
      * 自定义异常
      */
-    CUSTOM_ERROR(10000, "自定义异常"),
-
-    /**
-     * 未知错误
-     */
-    UNKNOW_ERROR(10001, "未知错误"),
+    CUSTOM_ERROR(10001, "自定义异常"),
 
     /**
      * 参数错误

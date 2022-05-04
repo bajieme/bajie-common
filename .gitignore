@@ -1,4 +1,15 @@
+### Mac ###
+.DS_Store
+
+### Package Files ###
+*.jar
+*.war
+*.ear
+/target
+
 ### MAVEN ###
+target
+logs
 .target/
 .**/target/
 **/target/
@@ -7,6 +18,7 @@
 
 ### IntelliJ IDEA ###
 .idea
+.idea/**
 *.iws
 *.iml
 *.ipr
@@ -22,3 +34,6 @@ build/
 !**/src/test/**/build/
 /out/
 /**/out/
+.generated/
+.**/generated/
+**/generated/
