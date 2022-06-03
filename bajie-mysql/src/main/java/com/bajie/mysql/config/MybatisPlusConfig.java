@@ -42,6 +42,7 @@ public class MybatisPlusConfig implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         log.info("start insert fill ....");
         this.fillStrategy(metaObject, "createTime", LocalDateTime.now());
+        // TODO header 取 token jwt
         this.fillStrategy(metaObject, "createBy", "bajie");
         this.fillStrategy(metaObject, "updateBy", "bajie");
     }

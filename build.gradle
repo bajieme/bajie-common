@@ -28,7 +28,7 @@ buildscript {
                 "commons-collections4"   : 'org.apache.commons:commons-collections4:4.4',
                 "commons-io"             : 'commons-io:commons-io:2.7',
                 "hutool"                 : 'cn.hutool:hutool-all:5.4.0',
-                "fastjson"               : 'com.alibaba:fastjson:1.2.73',
+                "fastjson2"               : 'com.alibaba.fastjson2:fastjson2:2.0.2',
                 "jackson"                : 'com.fasterxml.jackson.core:jackson-databind:2.11.1',
                 "gson"                   : 'com.google.code.gson:gson:2.8.6',
                 "lagarto"                : 'org.jodd:jodd-lagarto:5.1.5',
@@ -165,7 +165,7 @@ subprojects {
         implementation "${lib['commons-lang3']}"
         implementation "${lib['commons-collections4']}"
         implementation "${lib['commons-io']}"
-        implementation "${lib['fastjson']}"
+        implementation "${lib['fastjson2']}"
         implementation "${lib['mapstruct']}"
         annotationProcessor "${lib['mapstruct-processor']}"
         implementation "${lib['guava']}"

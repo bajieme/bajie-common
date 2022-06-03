@@ -102,7 +102,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     public R<String> handleException(Exception ex) {
         log.error("全局服务器异常:{}", ExceptionUtils.getStackTrace(ex));
-        return R.fail(ResultCode.FAILURE, ex.getMessage());
+        return R.fail(ResultCode.FAILURE);
     }
 
     @ExceptionHandler(CustomException.class)

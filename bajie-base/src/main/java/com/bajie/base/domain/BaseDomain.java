@@ -2,6 +2,7 @@ package com.bajie.base.domain;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -36,6 +37,7 @@ public class BaseDomain {
     private LocalDateTime updateTime;
 
     @ApiModelProperty(value = "是否已删除(0-未删除 1-删除)")
+    @TableLogic
     private Integer dr;
 
 }
