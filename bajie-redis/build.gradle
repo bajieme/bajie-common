@@ -3,5 +3,8 @@ jar {
 }
 
 dependencies {
-
+    // redis-boot
+    api 'org.springframework.boot:spring-boot-starter-data-redis'
+    // redis 依赖common-pool2连接池依赖
+    api 'org.apache.commons:commons-pool2'
 }

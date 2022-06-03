@@ -166,6 +166,7 @@ subprojects {
         implementation "${lib['commons-collections4']}"
         implementation "${lib['commons-io']}"
         implementation "${lib['fastjson2']}"
+        implementation "${lib['jackson']}"
         implementation "${lib['mapstruct']}"
         annotationProcessor "${lib['mapstruct-processor']}"
         implementation "${lib['guava']}"
