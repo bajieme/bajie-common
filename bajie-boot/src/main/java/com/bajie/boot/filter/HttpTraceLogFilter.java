@@ -78,8 +78,7 @@ public class HttpTraceLogFilter extends OncePerRequestFilter implements Ordered 
             String contentType = request.getContentType();
             log.info("请求contentType: {}", request.getContentType());
             log.info("请求URI: {}", path);
-            if (path.contains(NEED_TRACE_PATH_PREFIX) && !Objects.equals(IGNORE_CONTENT_TYPE, contentType)) {
-
+            if (!Objects.equals(IGNORE_CONTENT_TYPE, contentType)) {
                 //1. 记录日志
                 HttpTraceLog traceLog = new HttpTraceLog();
                 traceLog.setPath(path);
@@ -91,7 +90,6 @@ public class HttpTraceLogFilter extends OncePerRequestFilter implements Ordered 
                 traceLog.setStatus(status);
                 traceLog.setRequestBody(HtttpServletUtils.getRequestBody(request));
                 traceLog.setResponseBody(HtttpServletUtils.getResponseBody(response));
-
                 log(traceLog);
             }
             updateResponse(response);

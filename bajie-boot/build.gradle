@@ -19,4 +19,9 @@ dependencies {
     // project
     implementation project(':bajie-base')
 
+    // oauth2
+    api 'org.springframework.cloud:spring-cloud-starter-security'
+
+    api "${lib['javax.servlet-api']}"
+
 }
