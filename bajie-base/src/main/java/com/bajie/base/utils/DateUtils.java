@@ -3,6 +3,7 @@ package com.bajie.base.utils;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -80,5 +81,27 @@ public class DateUtils {
      */
     public static LocalDateTime parseSecond(long second) {
         return LocalDateTime.ofInstant(Instant.ofEpochSecond(second), ZoneId.systemDefault());
+    }
+
+    /**
+     * 获取秒数
+     *
+     * @param localDateTime 时间
+     * @return 秒数
+     */
+    public static long getSecond(LocalDateTime localDateTime) {
+        // 获取秒数
+        return localDateTime.toEpochSecond(ZoneOffset.of("+8"));
+    }
+
+
+    /**
+     * 获取秒数
+     *
+     * @param localDateTime 时间
+     * @return 获取毫秒数
+     */
+    public static long getMilli(LocalDateTime localDateTime) {
+        return localDateTime.toInstant(ZoneOffset.of("+8")).toEpochMilli();
     }
 }
